@@ -1,4 +1,2 @@
-이름: 이준석
-닉네임: 준돌
-
-git session
+git session start
+add b feature
