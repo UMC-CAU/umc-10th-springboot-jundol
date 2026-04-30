@@ -4,9 +4,16 @@ import java.time.LocalDate;
 
 public class MissionReqDTO {
 
-    public record home( //홈화면 조회 요청
+    //홈화면 조회 요청
+    public record Home(
             long locationId,
             LocalDate lastDeadline,
             Long lastMissionId
+    ) {}
+
+    // 미션 목록 조회(진행 중/ 진행 완료) 요청
+    public record ViewMissions(
+            boolean isCompleted,
+            Long lastUserMissionId
     ) {}
 }

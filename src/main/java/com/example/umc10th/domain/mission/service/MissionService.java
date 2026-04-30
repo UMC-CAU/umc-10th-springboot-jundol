@@ -6,7 +6,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MissionService {
-    public MissionResDTO.GetHome getHome(MissionReqDTO.home dto) {
+    public MissionResDTO.GetHome getHome(MissionReqDTO.Home dto) {
         return null; //임의 생성
+    }
+
+    public MissionResDTO.ViewMissions viewMissions(MissionReqDTO.ViewMissions dto) {
+        return null;
     }
 }
