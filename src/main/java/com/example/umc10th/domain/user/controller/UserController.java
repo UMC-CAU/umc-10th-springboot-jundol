@@ -26,7 +26,7 @@ public class UserController {
     //회원 가입
     @PostMapping("/auth/v1/users/signup")
     public ApiResponse<UserResDTO.SignUp> signUp(
-            @RequestBody UserResDTO.SignUp dto
+            @RequestBody UserReqDTO.SignUp dto
     ){
         BaseSuccessCode code = UserSuccessCode.SIGNUP_OK;
         return ApiResponse.onSuccess(code, userService.signUp(dto));

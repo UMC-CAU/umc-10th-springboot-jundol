@@ -11,7 +11,7 @@ public class UserService {
     }
 
     //회원 가입 메서드
-    public UserResDTO.SignUp signUp(UserResDTO.SignUp dto) {
+    public UserResDTO.SignUp signUp(UserReqDTO.SignUp dto) {
         return null;
     }
 }
