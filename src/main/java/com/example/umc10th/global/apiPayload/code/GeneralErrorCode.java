@@ -14,6 +14,7 @@ public enum GeneralErrorCode implements BaseErrorCode{ //@Getter가 있으므로
     UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "COMMON401_1", "인증되지 않았습니다."),
     FORBIDDEN(HttpStatus.FORBIDDEN, "COMMON403_1", "접근이 금지되었습니다."),
     NOT_FOUND(HttpStatus.NOT_FOUND, "COMMON404_1", "해당 리소스를 찾을 수 없습니다."),
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "COMMON500_1", "서버 내부 오류가 발생했습니다."),
     ;
     //httpStatus.BAD_REQUEST.. 등은 스프링의 HttpStatus에 정의되어 있는 http 상태 정보
     //에러 코드 enum에서 하는 것 -> 특정 http 상태(에러)에서 사용할 에러 코드와 메시지를 지정
