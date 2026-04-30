@@ -9,4 +9,9 @@ public class UserService {
     public UserResDTO.GetInfo getInfo(UserReqDTO.GetInfo dto) {
         return null; //임의 생성
     }
+
+    //회원 가입 메서드
+    public UserResDTO.SignUp signUp(UserResDTO.SignUp dto) {
+        return null;
+    }
 }

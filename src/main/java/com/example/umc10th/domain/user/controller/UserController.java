@@ -19,8 +19,17 @@ public class UserController {
     public ApiResponse<UserResDTO.GetInfo> getInfo(
             @RequestBody UserReqDTO.GetInfo dto
     ){
-        BaseSuccessCode code = UserSuccessCode.OK;
+        BaseSuccessCode code = UserSuccessCode.FIND_OK;
         return ApiResponse.onSuccess(code, userService.getInfo(dto));
+    }
+
+    //회원 가입
+    @PostMapping("/auth/v1/users/signup")
+    public ApiResponse<UserResDTO.SignUp> signUp(
+            @RequestBody UserResDTO.SignUp dto
+    ){
+        BaseSuccessCode code = UserSuccessCode.SIGNUP_OK;
+        return ApiResponse.onSuccess(code, userService.signUp(dto));
     }
 
 

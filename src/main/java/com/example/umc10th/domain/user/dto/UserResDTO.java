@@ -12,4 +12,8 @@ public class UserResDTO {
             Integer point
     ){}
 
+    //회원가입 응답
+    public record SignUp(
+            Long userId
+    ) {}
 }
