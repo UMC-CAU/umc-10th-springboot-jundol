@@ -8,17 +8,20 @@ public class MissionReqDTO {
     public record Home(
             long locationId,
             LocalDate lastDeadline,
-            Long lastMissionId
+            Long lastMissionId,
+            Long userId
     ) {}
 
     // 미션 목록 조회(진행 중/ 진행 완료) 요청
     public record ViewMissions(
             boolean isCompleted,
-            Long lastUserMissionId
+            Long lastUserMissionId,
+            Long userId
     ) {}
 
     // 미션 성공 dto
     public record MissionComplete(
-            Long userMissionId
+            Long userMissionId,
+            Long userId
     ) {}
 }

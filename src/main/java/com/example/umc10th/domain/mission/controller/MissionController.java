@@ -22,14 +22,16 @@ public class MissionController {
     public ApiResponse<MissionResDTO.GetHome> getHome(
             @RequestParam Long locationId,
             @RequestParam(required = false) LocalDate lastDeadLine,
-            @RequestParam(required = false) Long lastMissionId
+            @RequestParam(required = false) Long lastMissionId,
+            @RequestHeader("X-User-Id") Long userId
             //필수가 아닌 쿼리 파라미터(페이징 용)은 required 를 false로 설정
             ){
 
         MissionReqDTO.Home dto = new MissionReqDTO.Home(
                 locationId,
                 lastDeadLine,
-                lastMissionId
+                lastMissionId,
+                userId
         );
 
         BaseSuccessCode code = MissionSuccessCode.OK;
@@ -39,11 +41,13 @@ public class MissionController {
     @GetMapping("/v1/users/me/missions")
     public ApiResponse<MissionResDTO.ViewMissions> viewMissions(
             @RequestParam boolean isCompleted,
-            @RequestParam(required = false) Long lastUserMissionId
+            @RequestParam(required = false) Long lastUserMissionId,
+            @RequestHeader("X-User-Id") Long userId
     ){
         MissionReqDTO.ViewMissions dto = new MissionReqDTO.ViewMissions(
                 isCompleted,
-                lastUserMissionId
+                lastUserMissionId,
+                userId
         );
 
         BaseSuccessCode code = MissionSuccessCode.OK;
@@ -52,9 +56,13 @@ public class MissionController {
 
     @PostMapping("/v1/users/me/missions/{UserMissionId}/success-request")
     public ApiResponse<MissionResDTO.MissionComplete> missionComplete(
-            @PathVariable Long userMissionId
+            @PathVariable Long userMissionId,
+            @RequestHeader("X-User-Id") Long userId
     ){
-        MissionReqDTO.MissionComplete dto = new MissionReqDTO.MissionComplete(userMissionId);
+        MissionReqDTO.MissionComplete dto = new MissionReqDTO.MissionComplete(
+                userMissionId,
+                userId
+        );
 
         BaseSuccessCode code = MissionSuccessCode.MISSION_COMPLETE_OK;
         return ApiResponse.onSuccess(code, missionService.missionComplete(dto));

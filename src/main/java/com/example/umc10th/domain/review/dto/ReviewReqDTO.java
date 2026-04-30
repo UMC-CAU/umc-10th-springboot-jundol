@@ -7,7 +7,6 @@ import java.util.List;
 public class ReviewReqDTO {
     @Builder
     public record CreateReview(
-            Long Id, //임시 설정
             String content,
             Double rating,
             List<String> photoUrl

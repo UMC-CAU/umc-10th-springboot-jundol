@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReviewService {
 
-    public static ReviewResDTO.CreateReview createReview(Long restaurantId, ReviewReqDTO.CreateReview dto) {
+    public static ReviewResDTO.CreateReview createReview(Long userId, Long restaurantId, ReviewReqDTO.CreateReview dto) {
         return null; //임의 설정
     }
 }
