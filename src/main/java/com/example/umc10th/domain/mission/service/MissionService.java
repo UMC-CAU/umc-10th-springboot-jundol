@@ -13,4 +13,8 @@ public class MissionService {
     public MissionResDTO.ViewMissions viewMissions(MissionReqDTO.ViewMissions dto) {
         return null;
     }
+
+    public MissionResDTO.MissionComplete missionComplete(MissionReqDTO.MissionComplete dto) {
+        return null;
+    }
 }

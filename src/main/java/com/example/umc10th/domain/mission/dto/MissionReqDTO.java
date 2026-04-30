@@ -16,4 +16,9 @@ public class MissionReqDTO {
             boolean isCompleted,
             Long lastUserMissionId
     ) {}
+
+    // 미션 성공 dto
+    public record MissionComplete(
+            Long userMissionId
+    ) {}
 }

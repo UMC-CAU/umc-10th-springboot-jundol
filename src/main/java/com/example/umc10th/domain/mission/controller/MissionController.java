@@ -49,4 +49,16 @@ public class MissionController {
         BaseSuccessCode code = MissionSuccessCode.OK;
         return ApiResponse.onSuccess(code, missionService.viewMissions(dto));
     }
+
+    @PostMapping("/v1/users/me/missions/{UserMissionId}/success-request")
+    public ApiResponse<MissionResDTO.MissionComplete> missionComplete(
+            @PathVariable Long userMissionId
+    ){
+        MissionReqDTO.MissionComplete dto = new MissionReqDTO.MissionComplete(userMissionId);
+
+        BaseSuccessCode code = MissionSuccessCode.MISSION_COMPLETE_OK;
+        return ApiResponse.onSuccess(code, missionService.missionComplete(dto));
+    }
+
+
 }

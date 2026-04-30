@@ -41,5 +41,13 @@ public class MissionResDTO {
             String missionContents
     ) {}
 
+    //미션 성공 누르기
+    @Builder
+    public record MissionComplete(
+            Long userMissionId,
+            Integer missionPoint, //성공한 미션의 point점수
+            Integer totalPoint // 미션 성공 이후 늘어난 총 point
+    ){}
+
 
 }
