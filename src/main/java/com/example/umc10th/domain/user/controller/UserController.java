@@ -1,6 +1,6 @@
 package com.example.umc10th.domain.user.controller;
 
-import com.example.umc10th.domain.user.code.UserSuccessCode;
+import com.example.umc10th.domain.user.exception.code.UserSuccessCode;
 import com.example.umc10th.domain.user.dto.UserReqDTO;
 import com.example.umc10th.domain.user.dto.UserResDTO;
 import com.example.umc10th.domain.user.service.UserService;

@@ -1,6 +1,6 @@
 package com.example.umc10th.domain.mission.controller;
 
-import com.example.umc10th.domain.mission.code.MissionSuccessCode;
+import com.example.umc10th.domain.mission.exception.code.MissionSuccessCode;
 import com.example.umc10th.domain.mission.dto.MissionReqDTO;
 import com.example.umc10th.domain.mission.dto.MissionResDTO;
 import com.example.umc10th.domain.mission.service.MissionService;
