@@ -56,7 +56,7 @@ public class MissionController {
 
     @PostMapping("/v1/users/me/missions/{UserMissionId}/success-request")
     public ApiResponse<MissionResDTO.MissionComplete> missionComplete(
-            @PathVariable Long userMissionId,
+            @PathVariable("UserMissionId") Long userMissionId,
             @RequestHeader("X-User-Id") Long userId
     ){
         MissionReqDTO.MissionComplete dto = new MissionReqDTO.MissionComplete(
