@@ -73,28 +73,28 @@ public class Users extends BaseEntity {
     @Column(name = "social_uid")
     private String socialUid;
 
-    @Column(name = "profile_url")
+    @Column(name = "profile_url", columnDefinition = "TEXT")
     private String profileUrl;
 
 
     //양방향 관계 설정
 
-    @OneToMany(mappedBy = "support")
+    @OneToMany(mappedBy = "user")
     private List<Support> supportList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user_term")
+    @OneToMany(mappedBy = "user")
     private List<UserTerm> userTermList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user_food")
+    @OneToMany(mappedBy = "user")
     private List<UserFood> userFoodList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user_mission")
+    @OneToMany(mappedBy = "user")
     private List<UserMission> userMissionList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "review")
+    @OneToMany(mappedBy = "user")
     private List<Review> reviewList = new ArrayList<>();
 
-    @OneToOne(mappedBy = "notification_allow_list")
+    @OneToOne(mappedBy = "user")
     private NotificationAllowList notificationAllowList;
 
 }

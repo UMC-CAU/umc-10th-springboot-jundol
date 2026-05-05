@@ -18,7 +18,7 @@ public class SupportReply {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "content", nullable = false)
+    @Column(name = "content", nullable = false, columnDefinition = "TEXT")
     private String content;
 
     @OneToOne(fetch = FetchType.LAZY)

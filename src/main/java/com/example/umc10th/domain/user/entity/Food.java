@@ -28,6 +28,6 @@ public class Food {
     @Enumerated(EnumType.STRING)
     private FoodList foodType;
 
-    @OneToMany(mappedBy = "user_food")
+    @OneToMany(mappedBy = "food")
     private List<UserFood> userFoodList = new ArrayList<>();
 }

@@ -38,9 +38,9 @@ public class Review extends BaseEntity {
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
-    @OneToMany(mappedBy = "review_reply")
+    @OneToMany(mappedBy = "review")
     private List<ReviewReply> reviewReplyList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "review_photo")
+    @OneToMany(mappedBy = "review")
     private List<ReviewPhoto> reviewPhotoList = new ArrayList<>();
 }

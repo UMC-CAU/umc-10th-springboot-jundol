@@ -33,6 +33,6 @@ public class NotificationAllowList {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id")
-    private Users users;
+    private Users user;
 
 }

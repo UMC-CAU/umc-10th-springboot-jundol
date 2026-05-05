@@ -27,10 +27,10 @@ public class Term {
     @Column(name = "name", nullable = false)
     private TermType name;
 
-    @Column(name = "content", nullable = false)
+    @Column(name = "content", nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @OneToMany(mappedBy = "user_term")
+    @OneToMany(mappedBy = "term")
     private List<UserTerm> userTermList = new ArrayList<>();
 
 }

@@ -37,6 +37,6 @@ public class Mission extends BaseEntity {
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
-    @OneToMany(mappedBy = "user_mission")
+    @OneToMany(mappedBy = "mission")
     private List<UserMission> userMissionList = new ArrayList<>();
 }

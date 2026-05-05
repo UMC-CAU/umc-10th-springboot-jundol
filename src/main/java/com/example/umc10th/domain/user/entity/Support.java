@@ -1,5 +1,6 @@
 package com.example.umc10th.domain.user.entity;
 
+import com.example.umc10th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,21 +20,14 @@ import java.util.List;
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "support")
-public class Support {
+public class Support extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "content", nullable = false)
+    @Column(name = "content", nullable = false, columnDefinition = "TEXT")
     private String content;
-
-    @CreatedDate
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
-
-    @Column(name = "deleted_at")
-    private LocalDateTime deletedAt;
 
     @Column(name = "is_responced", nullable = false)
     @Builder.Default
@@ -41,9 +35,9 @@ public class Support {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id", nullable = false)
-    private Users users;
+    private Users user;
 
-    @OneToOne(mappedBy = "support_reply")
+    @OneToOne(mappedBy = "support")
     private SupportReply supportReply;
 
 }

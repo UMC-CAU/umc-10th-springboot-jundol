@@ -36,9 +36,9 @@ public class Restaurant {
     @JoinColumn(name = "location_id", nullable = false)
     private Location location;
 
-    @OneToMany(mappedBy = "mission")
+    @OneToMany(mappedBy = "restaurant")
     private List<Mission> missionList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "review")
+    @OneToMany(mappedBy = "restaurant")
     private List<Review> reviewList = new ArrayList<>();
 }

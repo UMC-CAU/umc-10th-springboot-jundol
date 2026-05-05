@@ -29,9 +29,9 @@ public class Location {
     private Address name;
 
     //연관관계
-    @OneToMany(mappedBy = "restaurant")
+    @OneToMany(mappedBy = "location")
     private List<Restaurant> restaurantList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "location")
     private List<Users> usersList = new ArrayList<>();
 }
