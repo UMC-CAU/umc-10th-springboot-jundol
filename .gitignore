@@ -38,4 +38,3 @@ out/
 
 ### 민감정보 ###
 .env
-application.yml
