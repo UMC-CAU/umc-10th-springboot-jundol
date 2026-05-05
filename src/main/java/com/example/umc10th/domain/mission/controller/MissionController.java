@@ -23,7 +23,7 @@ public class MissionController {
             @RequestParam Long locationId,
             @RequestParam(required = false) LocalDate lastDeadLine,
             @RequestParam(required = false) Long lastMissionId,
-            @RequestHeader("X-User-Id") Long userId
+            @RequestParam Long userId
             //필수가 아닌 쿼리 파라미터(페이징 용)은 required 를 false로 설정
             ){
 
@@ -42,7 +42,7 @@ public class MissionController {
     public ApiResponse<MissionResDTO.ViewMissions> viewMissions(
             @RequestParam boolean isCompleted,
             @RequestParam(required = false) Long lastUserMissionId,
-            @RequestHeader("X-User-Id") Long userId
+            @RequestParam Long userId
     ){
         MissionReqDTO.ViewMissions dto = new MissionReqDTO.ViewMissions(
                 isCompleted,
@@ -57,7 +57,7 @@ public class MissionController {
     @PostMapping("/v1/users/me/missions/{UserMissionId}/success-request")
     public ApiResponse<MissionResDTO.MissionComplete> missionComplete(
             @PathVariable("UserMissionId") Long userMissionId,
-            @RequestHeader("X-User-Id") Long userId
+            @RequestParam Long userId
     ){
         MissionReqDTO.MissionComplete dto = new MissionReqDTO.MissionComplete(
                 userMissionId,

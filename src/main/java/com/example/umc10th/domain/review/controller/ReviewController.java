@@ -21,7 +21,7 @@ public class ReviewController {
     public ApiResponse<ReviewResDTO.CreateReview> createReview(
             @PathVariable Long restaurantId,
             @RequestBody ReviewReqDTO.CreateReview dto,
-            @RequestHeader("X-User-Id") Long userId
+            @RequestParam Long userId
     ){
         BaseSuccessCode code = ReviewSuccessCode.REVIEW_CREATED;
         return ApiResponse.onSuccess(code, ReviewService.createReview(userId, restaurantId, dto));
