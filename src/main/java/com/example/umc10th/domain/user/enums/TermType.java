@@ -1,6 +1,6 @@
 package com.example.umc10th.domain.user.enums;
 
-public enum Term {
+public enum TermType {
     AGE,
     SERVICE,
     PRIVACY,
