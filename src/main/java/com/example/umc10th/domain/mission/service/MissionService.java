@@ -2,6 +2,7 @@ package com.example.umc10th.domain.mission.service;
 
 import com.example.umc10th.domain.mission.dto.MissionReqDTO;
 import com.example.umc10th.domain.mission.dto.MissionResDTO;
+import com.example.umc10th.domain.mission.repository.MissionRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -9,7 +10,12 @@ import java.util.List;
 
 @Service
 public class MissionService {
+
+    //private final MissionRepository missionRepository;
+
     public MissionResDTO.GetHome getHome(MissionReqDTO.Home dto) {
+
+
         List<MissionResDTO.HomeMissionInfo> missions = List.of(
                 MissionResDTO.HomeMissionInfo.builder()
                         .missionId(1L)
