@@ -3,7 +3,7 @@ package com.example.umc10th.domain.user.dto;
 
 import com.example.umc10th.domain.user.enums.FoodList;
 import com.example.umc10th.domain.user.enums.Gender;
-import com.example.umc10th.domain.user.enums.Term;
+import com.example.umc10th.domain.user.enums.TermType;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -27,6 +27,6 @@ public class UserReqDTO {
             String email,
             String password,
             List<FoodList> foods,
-            List<Term> terms
+            List<TermType> terms
     ) {}
 }

@@ -6,6 +6,7 @@ import com.example.umc10th.domain.mission.dto.MissionResDTO;
 import com.example.umc10th.domain.mission.service.MissionService;
 import com.example.umc10th.global.apiPayload.ApiResponse;
 import com.example.umc10th.global.apiPayload.code.BaseSuccessCode;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,7 @@ public class MissionController {
 
     private final MissionService missionService;
 
+    @Operation(summary = "홈 화면 조회", description = "홈 화면의 포인트, 성공한 미션 수, 도전 추천 미션을 조회")
     @GetMapping("v1/home") // 홈화면 조회 controller
     public ApiResponse<MissionResDTO.GetHome> getHome(
             @RequestParam Long locationId,
@@ -38,6 +40,7 @@ public class MissionController {
         return ApiResponse.onSuccess(code, missionService.getHome(dto));
     }
 
+    @Operation(summary = "미션 목록 조회", description = "진행 중, 혹은 진행 완료한 미션을 조회")
     @GetMapping("/v1/users/me/missions")
     public ApiResponse<MissionResDTO.ViewMissions> viewMissions(
             @RequestParam boolean isCompleted,
