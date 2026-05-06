@@ -25,7 +25,7 @@ public class Mission extends BaseEntity {
     private Long id;
 
     @Column(name = "mission_point", nullable = false)
-    private Long missionPoint;
+    private Integer missionPoint;
 
     @Column(name = "mission_contents", nullable = false, columnDefinition = "text")
     private String missionContents;

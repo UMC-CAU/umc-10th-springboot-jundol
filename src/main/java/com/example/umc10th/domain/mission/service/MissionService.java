@@ -3,9 +3,15 @@ package com.example.umc10th.domain.mission.service;
 import com.example.umc10th.domain.mission.converter.MissionConverter;
 import com.example.umc10th.domain.mission.dto.MissionReqDTO;
 import com.example.umc10th.domain.mission.dto.MissionResDTO;
+import com.example.umc10th.domain.mission.entity.Mission;
 import com.example.umc10th.domain.mission.entity.mapping.UserMission;
 import com.example.umc10th.domain.mission.repository.MissionRepository;
 import com.example.umc10th.domain.mission.repository.UserMissionRepository;
+import com.example.umc10th.domain.user.entity.Users;
+import com.example.umc10th.domain.user.exception.UserException;
+import com.example.umc10th.domain.user.exception.code.UserErrorCode;
+import com.example.umc10th.domain.user.repository.UserRepository;
+import com.example.umc10th.global.apiPayload.exception.ProjectException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -18,8 +24,11 @@ import java.util.List;
 public class MissionService {
 
     private final UserMissionRepository userMissionRepository;
+    private final MissionRepository missionRepository;
+    private final UserRepository userRepository;
 
     public MissionResDTO.GetHome getHome(MissionReqDTO.Home dto) {
+        /*
         List<MissionResDTO.HomeMissionInfo> missions = List.of(
                 MissionResDTO.HomeMissionInfo.builder()
                         .missionId(1L)
@@ -42,6 +51,24 @@ public class MissionService {
                 .clearedMissionCount(3)
                 .missions(missions)
                 .build();
+                */
+
+        Integer clearedMissionCount = userMissionRepository.countCompleteMissions(dto.userId(), dto.locationId());
+
+        Users user = userRepository.findById(dto.userId())
+                .orElseThrow(() -> new UserException(UserErrorCode.USER_NOT_FOUND));
+        Integer point = user.getPoint();
+
+        List<Mission> possibleMissions = missionRepository.findPossibleMissions(
+                dto.userId(),
+                dto.locationId(),
+                dto.lastDeadline(),
+                dto.lastMissionId(),
+                PageRequest.of(0, 5)
+        );
+
+        return MissionConverter.toGetHome(point, clearedMissionCount, possibleMissions);
+
     }
 
     public MissionResDTO.ViewMissions viewMissions(MissionReqDTO.ViewMissions dto) {

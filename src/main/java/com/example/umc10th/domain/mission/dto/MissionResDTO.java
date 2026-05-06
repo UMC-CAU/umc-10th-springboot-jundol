@@ -2,8 +2,7 @@ package com.example.umc10th.domain.mission.dto;
 
 import com.example.umc10th.domain.mission.entity.Mission;
 import lombok.Builder;
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MissionResDTO {
@@ -17,12 +16,12 @@ public class MissionResDTO {
     ) {}
 
 
-    //홈 화면 조회, 미션 조회할 때 응답으로 조회되는 미션들
+    //홈 화면 조회 미션 정보들
     @Builder
     public record HomeMissionInfo(
             Long missionId,
             String missionContents,
-            LocalDate deadline,
+            LocalDateTime deadline,
             Integer missionPoint,
             String restaurantName
     ) {}
@@ -36,7 +35,7 @@ public class MissionResDTO {
     @Builder
     public record MissionInfo(
             Long userMissionId,
-            Long missionPoint,
+            Integer missionPoint,
             String restaurantName,
             String missionContents,
             boolean isCleared

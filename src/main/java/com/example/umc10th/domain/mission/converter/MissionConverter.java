@@ -9,6 +9,34 @@ import java.util.List;
 
 public class MissionConverter {
 
+    //홈 화면 조회에 사용되는 하나의 도전 가능한 미션
+    public static MissionResDTO.HomeMissionInfo toHomeMissionInfo(Mission mission){
+        return MissionResDTO.HomeMissionInfo.builder()
+                .missionId(mission.getId())
+                .missionContents(mission.getMissionContents())
+                .deadline(mission.getDeadline())
+                .missionPoint(mission.getMissionPoint())
+                .restaurantName(mission.getRestaurant().getName())
+                .build();
+    }
+
+    //홈 화면 조회
+    public static MissionResDTO.GetHome toGetHome(Integer point, Integer clearedMissionCount, List<Mission> possibleMissions){
+        List<MissionResDTO.HomeMissionInfo> missions = new ArrayList<>();
+
+        for(Mission mission : possibleMissions){
+            missions.add(toHomeMissionInfo(mission));
+        }
+
+        return MissionResDTO.GetHome.builder()
+                .point(point)
+                .clearedMissionCount(clearedMissionCount)
+                .missions(missions)
+                .build();
+    }
+
+
+    // 미션 조회 (진행 중 | 진행 완료) 에 사용되는 하나의 미션 정보
     public static MissionResDTO.MissionInfo toMissionInfo(UserMission userMission){
         return MissionResDTO.MissionInfo.builder()
                 .userMissionId(userMission.getId())
@@ -19,6 +47,7 @@ public class MissionConverter {
                 .build();
     }
 
+    // 미션 조회 (진행 중 | 진행 완료)
     public static MissionResDTO.ViewMissions toViewMissions(List<UserMission> userMissionList){
 
         List<MissionResDTO.MissionInfo> missionInfoList = new ArrayList<>();
