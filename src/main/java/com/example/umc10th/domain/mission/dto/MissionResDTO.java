@@ -35,10 +35,11 @@ public class MissionResDTO {
     // 미션 목록 조회(진행 중/ 진행 완료)
     @Builder
     public record MissionInfo(
-            Long missionId,
-            Integer missionPoint,
+            Long userMissionId,
+            Long missionPoint,
             String restaurantName,
-            String missionContents
+            String missionContents,
+            boolean isCleared
     ) {}
 
     //미션 성공 누르기

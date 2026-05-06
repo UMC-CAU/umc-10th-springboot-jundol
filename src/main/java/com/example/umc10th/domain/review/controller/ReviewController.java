@@ -26,7 +26,7 @@ public class ReviewController {
             @RequestParam Long userId
     ){
         BaseSuccessCode code = ReviewSuccessCode.REVIEW_CREATED;
-        return ApiResponse.onSuccess(code, ReviewService.createReview(userId, restaurantId, dto));
+        return ApiResponse.onSuccess(code, reviewService.createReview(userId, restaurantId, dto));
 
     }
 
