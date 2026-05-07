@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,7 +24,7 @@ public class MissionController {
     @GetMapping("v1/home") // 홈화면 조회 controller
     public ApiResponse<MissionResDTO.GetHome> getHome(
             @RequestParam Long locationId,
-            @RequestParam(required = false) LocalDate lastDeadLine,
+            @RequestParam(required = false) LocalDateTime lastDeadline,
             @RequestParam(required = false) Long lastMissionId,
             @RequestParam Long userId
             //필수가 아닌 쿼리 파라미터(페이징 용)은 required 를 false로 설정
@@ -31,7 +32,7 @@ public class MissionController {
 
         MissionReqDTO.Home dto = new MissionReqDTO.Home(
                 locationId,
-                lastDeadLine,
+                lastDeadline,
                 lastMissionId,
                 userId
         );
