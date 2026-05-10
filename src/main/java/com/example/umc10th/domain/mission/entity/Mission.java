@@ -22,7 +22,7 @@ import java.util.List;
 public class Mission extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "mission_point", nullable = false)

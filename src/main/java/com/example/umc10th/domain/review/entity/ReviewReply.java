@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class ReviewReply {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "content", nullable = false, columnDefinition = "TEXT")
