@@ -16,6 +16,7 @@ import com.example.umc10th.global.apiPayload.code.GeneralErrorCode;
 import com.example.umc10th.global.apiPayload.exception.ProjectException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +27,7 @@ public class ReviewService {
     private final RestaurantRepository restaurantRepository;
 
 
+    @Transactional
     public ReviewResDTO.CreateReview createReview(Long userId, Long restaurantId, ReviewReqDTO.CreateReview dto) {
         Users user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserException(UserErrorCode.USER_NOT_FOUND));

@@ -3,6 +3,7 @@ package com.example.umc10th.domain.user.entity;
 import com.example.umc10th.domain.user.entity.mapping.UserTerm;
 import com.example.umc10th.domain.user.enums.TermType;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,8 +15,8 @@ import java.util.List;
 @Entity
 @Getter
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "term")
 public class Term {
 

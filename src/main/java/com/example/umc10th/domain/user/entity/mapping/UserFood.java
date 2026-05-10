@@ -3,6 +3,7 @@ package com.example.umc10th.domain.user.entity.mapping;
 import com.example.umc10th.domain.user.entity.Food;
 import com.example.umc10th.domain.user.entity.Users;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,8 +13,8 @@ import org.hibernate.annotations.Fetch;
 @Entity
 @Getter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Table(name = "user_food")
 public class UserFood {
 

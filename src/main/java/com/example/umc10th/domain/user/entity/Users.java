@@ -10,6 +10,7 @@ import com.example.umc10th.domain.user.enums.Gender;
 import com.example.umc10th.domain.user.enums.SocialType;
 import com.example.umc10th.global.entity.BaseEntity;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,8 +23,8 @@ import java.util.List;
 @Entity
 @Getter
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "users")
 public class Users extends BaseEntity {
 

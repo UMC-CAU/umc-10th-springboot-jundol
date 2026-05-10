@@ -4,6 +4,7 @@ package com.example.umc10th.domain.user.entity;
 import com.example.umc10th.domain.user.entity.mapping.UserFood;
 import com.example.umc10th.domain.user.enums.FoodList;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,8 +16,8 @@ import java.util.List;
 @Entity
 @Getter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Table(name = "food")
 public class Food {
 

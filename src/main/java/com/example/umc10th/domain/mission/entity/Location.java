@@ -4,6 +4,7 @@ package com.example.umc10th.domain.mission.entity;
 import com.example.umc10th.domain.mission.enums.Address;
 import com.example.umc10th.domain.user.entity.Users;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,8 +16,8 @@ import java.util.List;
 @Entity
 @Getter
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "location")
 public class Location {
 
