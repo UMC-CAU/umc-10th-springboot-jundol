@@ -8,6 +8,7 @@ import com.example.umc10th.global.apiPayload.ApiResponse;
 import com.example.umc10th.global.apiPayload.code.BaseSuccessCode;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -33,11 +34,14 @@ public class MissionController {
 
     @Operation(summary = "가게 내 미션들 조회")
     @GetMapping("/v1/restaurantss/{restaurantId}/missions")
-    public ApiResponse<List<MissionResDTO.GetMission>> getMissions(
-            @PathVariable Long restaurantId
+    public ApiResponse<MissionResDTO.Pagination<MissionResDTO.GetMission>> getMissions(
+            @PathVariable Long restaurantId,
+            @RequestParam Integer pageSize,
+            @RequestParam Integer pageNumber,
+            @RequestParam(required = false) String sort
     ){
         BaseSuccessCode code = MissionSuccessCode.OK;
-        return ApiResponse.onSuccess(code, missionService.getMissions(restaurantId));
+        return ApiResponse.onSuccess(code, missionService.getMissions(restaurantId, pageSize, pageNumber, sort));
     }
 
     @Operation(summary = "홈 화면 조회", description = "홈 화면의 포인트, 성공한 미션 수, 도전 추천 미션을 조회")

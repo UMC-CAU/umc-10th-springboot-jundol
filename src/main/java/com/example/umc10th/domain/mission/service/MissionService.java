@@ -16,6 +16,8 @@ import com.example.umc10th.domain.user.exception.UserException;
 import com.example.umc10th.domain.user.exception.code.UserErrorCode;
 import com.example.umc10th.domain.user.repository.UserRepository;
 import com.example.umc10th.global.apiPayload.exception.ProjectException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -52,6 +54,7 @@ public class MissionService {
 
     }
 
+    // 미션 보기 (진행 중 | 진행 완료)
     public MissionResDTO.ViewMissions viewMissions(MissionReqDTO.ViewMissions dto) {
 
         List<UserMission> userMissionList = userMissionRepository.findUserMission(
@@ -87,11 +90,33 @@ public class MissionService {
         return null;
     }
 
-    public List<MissionResDTO.GetMission> getMissions(Long restautantId) {
-        List<Mission> missionList = missionRepository.findAllByRestaurant_Id(restautantId);
+    //가게 미션 조회 service 메서드
+    public MissionResDTO.Pagination<MissionResDTO.GetMission> getMissions(
+            Long restaurantId,
+            Integer pageSize,
+            Integer pageNumber,
+            String sort
+    ) {
 
-        return missionList.stream()
-                .map(MissionConverter::toGetMission)
-                .toList();
+        Sort sortInfo;
+        if (sort != null){
+            sortInfo = Sort.by(sort);
+        }
+        else{
+            sortInfo = Sort.by("id").descending();
+        }
+
+        //페이지 정보들을 PageRequest로 만들기
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, sortInfo);
+
+        //가게 내 미션들 조회
+        Page<Mission> missionList = missionRepository.findAllByRestaurant_Id(restaurantId, pageRequest);
+
+        //미션들 응답 DTO로 포장하기
+        return MissionConverter.toPagination(
+                missionList.map(MissionConverter::toGetMission).toList(),
+                missionList.getNumber(),
+                missionList.getSize()
+        );
     }
 }
