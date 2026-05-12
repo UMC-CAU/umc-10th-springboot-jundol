@@ -68,19 +68,17 @@ public class MissionController {
 
     @Operation(summary = "미션 목록 조회", description = "진행 중, 혹은 진행 완료한 미션을 조회")
     @GetMapping("/v1/users/me/missions")
-    public ApiResponse<MissionResDTO.ViewMissions> viewMissions(
+    public ApiResponse<MissionResDTO.OffsetPagination<MissionResDTO.MissionInfo>> viewMissions(
             @RequestParam boolean isCompleted,
-            @RequestParam(required = false) Long lastUserMissionId,
-            @RequestParam Long userId
+            @RequestParam Integer pageSize,
+            @RequestParam Integer pageNumber,
+            @RequestParam(required = false) String sort,
+            @RequestBody Long userId
     ){
-        MissionReqDTO.ViewMissions dto = new MissionReqDTO.ViewMissions(
-                isCompleted,
-                lastUserMissionId,
-                userId
-        );
+
 
         BaseSuccessCode code = MissionSuccessCode.OK;
-        return ApiResponse.onSuccess(code, missionService.viewMissions(dto));
+        return ApiResponse.onSuccess(code, missionService.viewMissions(isCompleted, pageSize, pageNumber, sort, userId));
     }
 
     @PostMapping("/v1/users/me/missions/{UserMissionId}/success-request")

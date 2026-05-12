@@ -1,6 +1,8 @@
 package com.example.umc10th.domain.mission.repository;
 
 import com.example.umc10th.domain.mission.entity.mapping.UserMission;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -34,4 +36,5 @@ public interface UserMissionRepository extends JpaRepository<UserMission, Long> 
     );
 
 
+    Page<UserMission> findAllByUser_IdAndIsCleared(Long userId, boolean isCleared, PageRequest pageRequest);
 }

@@ -83,8 +83,21 @@ public class MissionConverter {
                 .build();
     }
 
-    //페이지네이션 틀 생성
-    public static <T> MissionResDTO.CursorPagination<T> toPagination(
+    //오프셋 페이지네이션 틀 생성
+    public static <T> MissionResDTO.OffsetPagination<T> toOffsetPagination(
+            List<T> data,
+            Integer pageNumber,
+            Integer pageSize
+    ){
+        return MissionResDTO.OffsetPagination.<T>builder()
+                .data(data)
+                .pageNumber(pageNumber)
+                .pageSize(pageSize)
+                .build();
+    }
+
+    //커서 페이지네이션 틀 생성
+    public static <T> MissionResDTO.CursorPagination<T> toCursorPagination(
             List<T> data,
             Boolean hasNext,
             String nextCursor,

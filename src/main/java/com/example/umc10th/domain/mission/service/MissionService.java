@@ -18,6 +18,7 @@ import com.example.umc10th.domain.user.exception.UserException;
 import com.example.umc10th.domain.user.exception.code.UserErrorCode;
 import com.example.umc10th.domain.user.repository.UserRepository;
 import com.example.umc10th.global.apiPayload.exception.ProjectException;
+import org.apache.catalina.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
@@ -58,6 +59,43 @@ public class MissionService {
     }
 
     // 미션 보기 (진행 중 | 진행 완료)
+
+    public MissionResDTO.OffsetPagination<MissionResDTO.MissionInfo> viewMissions(
+            boolean isCleared,
+            Integer pageSize,
+            Integer pageNumber,
+            String sort,
+            Long userId
+    ) {
+
+        //정렬 정보 생성
+        Sort sortInfo;
+        if(sort != null){
+            sortInfo = Sort.by(sort);
+        } else {
+            sortInfo = Sort.by("id").descending();
+        }
+
+        //페이지 정보들을 PageRequest로 만들기
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, sortInfo);
+
+        //사용자 미션들 조회
+        Page<UserMission> userMissionList = userMissionRepository.findAllByUser_IdAndIsCleared(userId, isCleared, pageRequest);
+
+        //미션 데이터 추출
+        List<MissionResDTO.MissionInfo> data = userMissionList.getContent()
+                .stream()
+                .map(MissionConverter::toMissionInfo)
+                .toList();
+
+        return MissionConverter.toOffsetPagination(
+                data,
+                userMissionList.getNumber(),
+                userMissionList.getSize()
+        );
+    }
+
+    /*
     public MissionResDTO.ViewMissions viewMissions(MissionReqDTO.ViewMissions dto) {
 
         List<UserMission> userMissionList = userMissionRepository.findUserMission(
@@ -76,7 +114,7 @@ public class MissionService {
                 .missionPoint(100)
                 .totalPoint(1600)
                 .build();
-    }
+    }*/
 
 
     // 가게 미션 생성
@@ -140,11 +178,13 @@ public class MissionService {
         nextCursor = missionList.getContent().getLast().getId() + ":" + missionList.getContent().getLast().getId();
 
         //미션들 응답 DTO로 포장하기
-        return MissionConverter.toPagination(
+        return MissionConverter.toCursorPagination(
                 missionList.map(MissionConverter::toGetMission).toList(),
                 missionList.hasNext(),
                 nextCursor,
                 missionList.getSize()
         );
     }
+
+
 }
