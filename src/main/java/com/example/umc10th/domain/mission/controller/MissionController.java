@@ -34,14 +34,14 @@ public class MissionController {
 
     @Operation(summary = "가게 내 미션들 조회")
     @GetMapping("/v1/restaurantss/{restaurantId}/missions")
-    public ApiResponse<MissionResDTO.Pagination<MissionResDTO.GetMission>> getMissions(
+    public ApiResponse<MissionResDTO.CursorPagination<MissionResDTO.GetMission>> getMissions(
             @PathVariable Long restaurantId,
             @RequestParam Integer pageSize,
-            @RequestParam Integer pageNumber,
-            @RequestParam(required = false) String sort
+            @RequestParam String cursor,
+            @RequestParam String query
     ){
         BaseSuccessCode code = MissionSuccessCode.OK;
-        return ApiResponse.onSuccess(code, missionService.getMissions(restaurantId, pageSize, pageNumber, sort));
+        return ApiResponse.onSuccess(code, missionService.getMissions(restaurantId, pageSize, cursor, query));
     }
 
     @Operation(summary = "홈 화면 조회", description = "홈 화면의 포인트, 성공한 미션 수, 도전 추천 미션을 조회")

@@ -1,9 +1,11 @@
 package com.example.umc10th.domain.mission.repository;
 
 import com.example.umc10th.domain.mission.entity.Mission;
+import com.example.umc10th.domain.mission.entity.Restaurant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -31,4 +33,10 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
     );
 
     Page<Mission> findAllByRestaurant_Id(Long restaurantId, PageRequest pageRequest);
+
+    List<Mission> restaurant(Restaurant restaurant);
+
+    Slice<Mission> findMissionsByRestaurant_IdOrderByIdDesc(Long restaurantId, PageRequest pageRequest);
+
+    Slice<Mission> findMissionsByRestaurant_IdAndIdLessThanOrderByIdDesc(Long restaurantId, long idCursor, PageRequest pageRequest);
 }

@@ -84,14 +84,16 @@ public class MissionConverter {
     }
 
     //페이지네이션 틀 생성
-    public static <T> MissionResDTO.Pagination<T> toPagination(
+    public static <T> MissionResDTO.CursorPagination<T> toPagination(
             List<T> data,
-            Integer pageNumber,
+            Boolean hasNext,
+            String nextCursor,
             Integer pageSize
     ){
-        return MissionResDTO.Pagination.<T>builder()
+        return MissionResDTO.CursorPagination.<T>builder()
                 .data(data)
-                .pageNumber(pageNumber)
+                .hasNext(hasNext)
+                .nextCursor(nextCursor)
                 .pageSize(pageSize)
                 .build();
     }

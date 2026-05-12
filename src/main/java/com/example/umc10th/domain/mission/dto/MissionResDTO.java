@@ -57,11 +57,21 @@ public class MissionResDTO {
             String conditional
     ){}
 
-    //페이지네이션 틀
+    //오프셋 기반 페이지네이션 틀
     @Builder
-    public record Pagination<T>(
+    public record OffsetPagination<T>(
             List<T> data,
             Integer pageNumber,
             Integer pageSize
     ){}
+
+    //커서 기반 페이지네이션 틀
+    @Builder
+    public record CursorPagination<T>(
+            List<T> data,
+            Boolean hasNext,
+            String nextCursor,
+            Integer pageSize
+    ){}
+
 }
