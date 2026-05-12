@@ -7,6 +7,7 @@ import com.example.umc10th.domain.mission.service.MissionService;
 import com.example.umc10th.global.apiPayload.ApiResponse;
 import com.example.umc10th.global.apiPayload.code.BaseSuccessCode;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class MissionController {
     @PostMapping("v1/restaurants/{restaurantId}/missions")
     public ApiResponse<Void> createMission(
             @PathVariable Long restaurantId,
-            @RequestBody MissionReqDTO.CreateMission dto
+            @RequestBody @Valid MissionReqDTO.CreateMission dto
     ){
         BaseSuccessCode code = MissionSuccessCode.CREATED;
         return ApiResponse.onSuccess(code, missionService.createMission(restaurantId, dto));
