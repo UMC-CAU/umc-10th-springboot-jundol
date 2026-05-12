@@ -27,4 +27,6 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
             @Param("lastMissionId") Long lastMissionId,
             Pageable pageable
     );
+
+    List<Mission> findAllByRestaurant_Id(Long restaurantId);
 }

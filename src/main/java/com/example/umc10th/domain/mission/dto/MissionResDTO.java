@@ -49,5 +49,13 @@ public class MissionResDTO {
             Integer totalPoint // 미션 성공 이후 늘어난 총 point
     ){}
 
+    //가게 내 미션 조회
+    @Builder
+    public record GetMission(
+            Long missionId,
+            Integer point,
+            String conditional
+    ){}
+
 
 }

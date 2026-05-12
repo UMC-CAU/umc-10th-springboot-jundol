@@ -1,7 +1,9 @@
 package com.example.umc10th.domain.mission.converter;
 
+import com.example.umc10th.domain.mission.dto.MissionReqDTO;
 import com.example.umc10th.domain.mission.dto.MissionResDTO;
 import com.example.umc10th.domain.mission.entity.Mission;
+import com.example.umc10th.domain.mission.entity.Restaurant;
 import com.example.umc10th.domain.mission.entity.mapping.UserMission;
 
 import java.util.ArrayList;
@@ -57,6 +59,28 @@ public class MissionConverter {
         }
 
         return new MissionResDTO.ViewMissions(missionInfoList);
+    }
+
+    //가게 미션 생성
+    public static Mission toRestaurantMission(
+            Restaurant restaurant,
+            MissionReqDTO.CreateMission dto
+    ){
+        return Mission.builder()
+                .restaurant(restaurant)
+                .missionContents(dto.conditional())
+                .missionPoint(dto.point())
+                .deadline(dto.deadline())
+                .build();
+    }
+
+    //가게 내 미션 조회
+    public static MissionResDTO.GetMission toGetMission(Mission mission){
+        return MissionResDTO.GetMission.builder()
+                .conditional(mission.getMissionContents())
+                .point(mission.getMissionPoint())
+                .missionId(mission.getId())
+                .build();
     }
 
 }

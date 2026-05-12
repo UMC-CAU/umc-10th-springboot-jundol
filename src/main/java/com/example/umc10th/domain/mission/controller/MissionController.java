@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,6 +20,25 @@ import java.time.LocalDateTime;
 public class MissionController {
 
     private final MissionService missionService;
+
+    @Operation(summary = "가게 미션 생성")
+    @PostMapping("v1/restaurants/{restaurantId}/missions")
+    public ApiResponse<Void> createMission(
+            @PathVariable Long restaurantId,
+            @RequestBody MissionReqDTO.CreateMission dto
+    ){
+        BaseSuccessCode code = MissionSuccessCode.CREATED;
+        return ApiResponse.onSuccess(code, missionService.createMission(restaurantId, dto));
+    }
+
+    @Operation(summary = "가게 내 미션들 조회")
+    @GetMapping("/v1/restaurantss/{restaurantId}/missions")
+    public ApiResponse<List<MissionResDTO.GetMission>> getMissions(
+            @PathVariable Long restaurantId
+    ){
+        BaseSuccessCode code = MissionSuccessCode.OK;
+        return ApiResponse.onSuccess(code, missionService.getMissions(restaurantId));
+    }
 
     @Operation(summary = "홈 화면 조회", description = "홈 화면의 포인트, 성공한 미션 수, 도전 추천 미션을 조회")
     @GetMapping("v1/home") // 홈화면 조회 controller

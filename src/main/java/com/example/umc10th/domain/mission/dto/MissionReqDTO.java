@@ -4,6 +4,14 @@ import java.time.LocalDateTime;
 
 public class MissionReqDTO {
 
+    //가게 미션 생성
+    public record CreateMission(
+            LocalDateTime deadline,
+            Integer point,
+            String conditional
+
+    ) {}
+
     //홈화면 조회 요청
     public record Home(
             long locationId,
