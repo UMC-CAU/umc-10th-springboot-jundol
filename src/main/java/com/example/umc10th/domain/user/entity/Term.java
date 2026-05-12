@@ -1,4 +1,37 @@
 package com.example.umc10th.domain.user.entity;
 
+import com.example.umc10th.domain.user.entity.mapping.UserTerm;
+import com.example.umc10th.domain.user.enums.TermType;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Getter
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "term")
 public class Term {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "name", nullable = false)
+    private TermType name;
+
+    @Column(name = "content", nullable = false, columnDefinition = "TEXT")
+    private String content;
+
+    @OneToMany(mappedBy = "term")
+    private List<UserTerm> userTermList = new ArrayList<>();
+
 }

@@ -6,6 +6,7 @@ import com.example.umc10th.domain.user.dto.UserResDTO;
 import com.example.umc10th.domain.user.service.UserService;
 import com.example.umc10th.global.apiPayload.ApiResponse;
 import com.example.umc10th.global.apiPayload.code.BaseSuccessCode;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserService userService;
 
+    @Operation(summary = "마이페이지", description = "마이페이지 정보 조회")
     @PostMapping("/v1/users/me")
     public ApiResponse<UserResDTO.GetInfo> getInfo(
             @RequestBody UserReqDTO.GetInfo dto
@@ -23,7 +25,7 @@ public class UserController {
         return ApiResponse.onSuccess(code, userService.getInfo(dto));
     }
 
-    //회원 가입
+    @Operation(summary = "회원가입", description = "회원가입을 위한 api")
     @PostMapping("/auth/v1/users/signup")
     public ApiResponse<UserResDTO.SignUp> signUp(
             @RequestBody UserReqDTO.SignUp dto

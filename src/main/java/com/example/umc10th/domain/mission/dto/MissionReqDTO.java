@@ -1,13 +1,13 @@
 package com.example.umc10th.domain.mission.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class MissionReqDTO {
 
     //홈화면 조회 요청
     public record Home(
             long locationId,
-            LocalDate lastDeadline,
+            LocalDateTime lastDeadline,
             Long lastMissionId,
             Long userId
     ) {}
