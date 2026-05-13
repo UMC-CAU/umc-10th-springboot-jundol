@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 public enum ReviewErrorCode implements BaseErrorCode {
 
     REVIEW_NOT_FOUND(HttpStatus.NOT_FOUND, "REVIEW404_1", "해당 리뷰를 찾을 수 없습니다."),
+    QUERY_NOT_VALID(HttpStatus.BAD_REQUEST, "REVIEW400_1", "쿼리 파라미터가 유효하지 않습니다."),
     ;
 
     private final HttpStatus status;

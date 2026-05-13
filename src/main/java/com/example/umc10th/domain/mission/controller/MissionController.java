@@ -34,7 +34,7 @@ public class MissionController {
     }
 
     @Operation(summary = "가게 내 미션들 조회")
-    @GetMapping("/v1/restaurantss/{restaurantId}/missions")
+    @GetMapping("/v1/restaurants/{restaurantId}/missions")
     public ApiResponse<MissionResDTO.CursorPagination<MissionResDTO.GetMission>> getMissions(
             @PathVariable Long restaurantId,
             @RequestParam Integer pageSize,

@@ -12,10 +12,11 @@ public class ReviewResDTO {
     ) {}
 
     //내가 작성한 리뷰 조회
+    @Builder
     public record GetReview(
             String userName,
             Long reviewId,
-            Integer rating,
+            Double rating,
             Long restaurantId,
             String restaurantName,
             String reviewContent,
@@ -24,6 +25,7 @@ public class ReviewResDTO {
     ){}
 
     //리뷰에 대한 사장님의 응답
+    @Builder
     public record ReplyInfo(
             Long replyId,
             String replyContent,
