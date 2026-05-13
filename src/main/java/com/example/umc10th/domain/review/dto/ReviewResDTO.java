@@ -12,7 +12,7 @@ public class ReviewResDTO {
     ) {}
 
     //내가 작성한 리뷰 조회
-    public record GetReviews(
+    public record GetReview(
             String userName,
             Long reviewId,
             Integer rating,
@@ -25,9 +25,10 @@ public class ReviewResDTO {
 
     //리뷰에 대한 사장님의 응답
     public record ReplyInfo(
+            Long replyId,
             String replyContent,
             LocalDateTime createdAt
-    )
+    ){}
 
 
     //커서 기반 페이지네이션 틀

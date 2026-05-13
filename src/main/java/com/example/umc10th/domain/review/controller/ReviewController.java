@@ -1,6 +1,7 @@
 package com.example.umc10th.domain.review.controller;
 
 
+import com.example.umc10th.domain.review.entity.Review;
 import com.example.umc10th.domain.review.exception.code.ReviewSuccessCode;
 import com.example.umc10th.domain.review.dto.ReviewReqDTO;
 import com.example.umc10th.domain.review.dto.ReviewResDTO;
@@ -27,6 +28,20 @@ public class ReviewController {
     ){
         BaseSuccessCode code = ReviewSuccessCode.REVIEW_CREATED;
         return ApiResponse.onSuccess(code, reviewService.createReview(userId, restaurantId, dto));
+
+    }
+
+    //GET 메서드가 더 적합하지만 id를 body로 받아야 하기 때문에 안전하게 POST 사용
+    @Operation(summary = "사용자가 생성한 리뷰 조회 API", description = "내가 작성한 리뷰 조회하는 API")
+    @PostMapping("/v1/users/me/reviews")
+    public ApiResponse<ReviewResDTO.CursorPagination<ReviewResDTO.GetReview>> getReivews(
+            @RequestBody Long userId,
+            @RequestParam Integer pageSize,
+            @RequestParam String cursor,
+            @RequestParam String query
+    ){
+        BaseSuccessCode code = ReviewSuccessCode.OK;
+        return ApiResponse.onSuccess(code, reviewService.getReview(userId, pageSize, cursor, query));
 
     }
 
