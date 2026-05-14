@@ -9,6 +9,8 @@ import com.example.umc10th.domain.mission.repository.LocationRepository;
 import com.example.umc10th.domain.mission.repository.MissionRepository;
 import com.example.umc10th.domain.mission.repository.RestaurantRepository;
 import com.example.umc10th.domain.mission.repository.UserMissionRepository;
+import com.example.umc10th.domain.review.entity.Review;
+import com.example.umc10th.domain.review.repository.ReviewRepository;
 import com.example.umc10th.domain.user.entity.Users;
 import com.example.umc10th.domain.user.enums.SocialType;
 import com.example.umc10th.domain.user.repository.UserRepository;
@@ -28,6 +30,7 @@ public class InsertDummyData implements CommandLineRunner {
     private final RestaurantRepository restaurantRepository;
     private final MissionRepository missionRepository;
     private final UserMissionRepository userMissionRepository;
+    private final ReviewRepository reviewRepository;
 
     @Override
     @Transactional
@@ -64,9 +67,18 @@ public class InsertDummyData implements CommandLineRunner {
         Mission m6 = missionRepository.save(Mission.builder().missionPoint(100).missionContents("미션 내용 예시 6").deadline(LocalDateTime.of(2026, 6, 1, 0, 0)).restaurant(r3).build());
         Mission m7 = missionRepository.save(Mission.builder().missionPoint(200).missionContents("미션 내용 예시 7").deadline(LocalDateTime.of(2026, 7, 1, 0, 0)).restaurant(r3).build());
 
-        // UserMission (미션1,2 완료 / 미션3 진행중 / 나머지 도전안함)
+        // UserMission (5개: pageSize=2로 테스트 시 3페이지로 나뉨)
         userMissionRepository.save(UserMission.builder().user(user).mission(m1).isCleared(true).build());
         userMissionRepository.save(UserMission.builder().user(user).mission(m2).isCleared(true).build());
         userMissionRepository.save(UserMission.builder().user(user).mission(m3).isCleared(false).build());
+        userMissionRepository.save(UserMission.builder().user(user).mission(m4).isCleared(false).build());
+        userMissionRepository.save(UserMission.builder().user(user).mission(m5).isCleared(true).build());
+
+        // Review (5개: pageSize=2로 테스트 시 3페이지로 나뉨)
+        reviewRepository.save(Review.builder().content("예시 리뷰 내용 1 - 맛있어요").rating(5.0).user(user).restaurant(r1).build());
+        reviewRepository.save(Review.builder().content("예시 리뷰 내용 2 - 보통이에요").rating(3.0).user(user).restaurant(r1).build());
+        reviewRepository.save(Review.builder().content("예시 리뷰 내용 3 - 분위기가 좋아요").rating(4.0).user(user).restaurant(r2).build());
+        reviewRepository.save(Review.builder().content("예시 리뷰 내용 4 - 가성비 좋아요").rating(4.5).user(user).restaurant(r2).build());
+        reviewRepository.save(Review.builder().content("예시 리뷰 내용 5 - 재방문 의사 있어요").rating(3.5).user(user).restaurant(r3).build());
     }
 }

@@ -107,14 +107,14 @@ public class MissionService {
 
         return MissionConverter.toViewMissions(userMissionList);
     }
-
+*/
     public MissionResDTO.MissionComplete missionComplete(MissionReqDTO.MissionComplete dto) {
         return MissionResDTO.MissionComplete.builder()
                 .userMissionId(1L)
                 .missionPoint(100)
                 .totalPoint(1600)
                 .build();
-    }*/
+    }
 
 
     // 가게 미션 생성

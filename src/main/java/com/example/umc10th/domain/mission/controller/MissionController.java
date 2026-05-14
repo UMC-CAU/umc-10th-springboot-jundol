@@ -67,7 +67,7 @@ public class MissionController {
     }
 
     @Operation(summary = "미션 목록 조회", description = "진행 중, 혹은 진행 완료한 미션을 조회")
-    @GetMapping("/v1/users/me/missions")
+    @PostMapping("/v1/users/me/missions")
     public ApiResponse<MissionResDTO.OffsetPagination<MissionResDTO.MissionInfo>> viewMissions(
             @RequestParam boolean isCompleted,
             @RequestParam Integer pageSize,
