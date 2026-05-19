@@ -57,6 +57,12 @@ public class MissionResDTO {
             String conditional
     ){}
 
+    //가게 미션 생성
+    public record CreateMission(
+            Long missionId
+    ){}
+
+
     //오프셋 기반 페이지네이션 틀
     @Builder
     public record OffsetPagination<T>(

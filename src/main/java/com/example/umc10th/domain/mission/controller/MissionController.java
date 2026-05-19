@@ -1,5 +1,6 @@
 package com.example.umc10th.domain.mission.controller;
 
+import com.example.umc10th.domain.mission.entity.Mission;
 import com.example.umc10th.domain.mission.exception.code.MissionSuccessCode;
 import com.example.umc10th.domain.mission.dto.MissionReqDTO;
 import com.example.umc10th.domain.mission.dto.MissionResDTO;
@@ -25,7 +26,7 @@ public class MissionController {
 
     @Operation(summary = "가게 미션 생성")
     @PostMapping("v1/restaurants/{restaurantId}/missions")
-    public ApiResponse<Void> createMission(
+    public ApiResponse<MissionResDTO.CreateMission> createMission(
             @PathVariable Long restaurantId,
             @RequestBody @Valid MissionReqDTO.CreateMission dto
     ){

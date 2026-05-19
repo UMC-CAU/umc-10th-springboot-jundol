@@ -119,7 +119,7 @@ public class MissionService {
 
     // 가게 미션 생성
     @Transactional
-    public Void createMission(Long restaurantId, MissionReqDTO.CreateMission dto) {
+    public MissionResDTO.CreateMission createMission(Long restaurantId, MissionReqDTO.CreateMission dto) {
         //가게 찾기
         Restaurant restaurant = restaurantRepository.findById(restaurantId).
                 orElseThrow(()-> new RestaurantException(RestaurantErrorCode.NOT_FOUND));
@@ -127,8 +127,8 @@ public class MissionService {
         //미션 생성
         Mission mission = MissionConverter.toRestaurantMission(restaurant, dto);
 
-        missionRepository.save(mission);
-        return null;
+        Mission savedMission =  missionRepository.save(mission);
+        return new MissionResDTO.CreateMission(savedMission.getId());
     }
 
     //가게 미션 조회 service 메서드
