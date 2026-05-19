@@ -5,12 +5,13 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
+
 @Getter
 @RequiredArgsConstructor
-public enum MissionErrorCode implements BaseErrorCode {
+public enum RestaurantErrorCode implements BaseErrorCode {
 
-    MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "MISSION404_1", "해당 미션을 찾을 수 없습니다."),
-    QUERY_NOT_VALID(HttpStatus.BAD_REQUEST, "MISSION400_1", "쿼리 파라미터가 유효하지 않습니다.");
+    NOT_FOUND(HttpStatus.NOT_FOUND, "STORE404_1", "해당 가게가 존재하지 않습니다."),
+    ;
 
     private final HttpStatus status;
     private final String code;

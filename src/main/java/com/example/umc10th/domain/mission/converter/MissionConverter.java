@@ -1,7 +1,9 @@
 package com.example.umc10th.domain.mission.converter;
 
+import com.example.umc10th.domain.mission.dto.MissionReqDTO;
 import com.example.umc10th.domain.mission.dto.MissionResDTO;
 import com.example.umc10th.domain.mission.entity.Mission;
+import com.example.umc10th.domain.mission.entity.Restaurant;
 import com.example.umc10th.domain.mission.entity.mapping.UserMission;
 
 import java.util.ArrayList;
@@ -57,6 +59,56 @@ public class MissionConverter {
         }
 
         return new MissionResDTO.ViewMissions(missionInfoList);
+    }
+
+    //가게 미션 생성
+    public static Mission toRestaurantMission(
+            Restaurant restaurant,
+            MissionReqDTO.CreateMission dto
+    ){
+        return Mission.builder()
+                .restaurant(restaurant)
+                .missionContents(dto.conditional())
+                .missionPoint(dto.point())
+                .deadline(dto.deadline())
+                .build();
+    }
+
+    //가게 내 미션 조회
+    public static MissionResDTO.GetMission toGetMission(Mission mission){
+        return MissionResDTO.GetMission.builder()
+                .conditional(mission.getMissionContents())
+                .point(mission.getMissionPoint())
+                .missionId(mission.getId())
+                .build();
+    }
+
+    //오프셋 페이지네이션 틀 생성
+    public static <T> MissionResDTO.OffsetPagination<T> toOffsetPagination(
+            List<T> data,
+            Integer pageNumber,
+            Integer pageSize
+    ){
+        return MissionResDTO.OffsetPagination.<T>builder()
+                .data(data)
+                .pageNumber(pageNumber)
+                .pageSize(pageSize)
+                .build();
+    }
+
+    //커서 페이지네이션 틀 생성
+    public static <T> MissionResDTO.CursorPagination<T> toCursorPagination(
+            List<T> data,
+            Boolean hasNext,
+            String nextCursor,
+            Integer pageSize
+    ){
+        return MissionResDTO.CursorPagination.<T>builder()
+                .data(data)
+                .hasNext(hasNext)
+                .nextCursor(nextCursor)
+                .pageSize(pageSize)
+                .build();
     }
 
 }

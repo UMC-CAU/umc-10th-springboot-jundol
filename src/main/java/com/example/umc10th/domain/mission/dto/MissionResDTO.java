@@ -49,5 +49,35 @@ public class MissionResDTO {
             Integer totalPoint // 미션 성공 이후 늘어난 총 point
     ){}
 
+    //가게 내 미션 조회
+    @Builder
+    public record GetMission(
+            Long missionId,
+            Integer point,
+            String conditional
+    ){}
+
+    //가게 미션 생성
+    public record CreateMission(
+            Long missionId
+    ){}
+
+
+    //오프셋 기반 페이지네이션 틀
+    @Builder
+    public record OffsetPagination<T>(
+            List<T> data,
+            Integer pageNumber,
+            Integer pageSize
+    ){}
+
+    //커서 기반 페이지네이션 틀
+    @Builder
+    public record CursorPagination<T>(
+            List<T> data,
+            Boolean hasNext,
+            String nextCursor,
+            Integer pageSize
+    ){}
 
 }
