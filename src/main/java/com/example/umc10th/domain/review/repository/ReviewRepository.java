@@ -14,6 +14,4 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     Slice<Review> findReviewsByUser_idAndIdLessThanOrderByIdDesc(Long userId, long idCursor, Pageable pageRequest);
-
-    Slice<Review> findReviewsByUser_idOrderByIdDesc(Long userId, Pageable pageRequest);
 }

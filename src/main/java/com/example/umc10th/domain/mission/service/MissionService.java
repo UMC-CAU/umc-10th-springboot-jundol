@@ -170,12 +170,21 @@ public class MissionService {
         }
         else
         {
-            //커서 없이 조회
-            missionList = missionRepository.findMissionsByRestaurant_IdOrderByIdDesc(restaurantId, pageRequest);
+            //커서가 없으므로 id값을 최대값으로 해서 where 절에서 걸리지 않도록
+            idCursor = Long.MAX_VALUE;
+
+            missionList = missionRepository.findMissionsByRestaurant_IdAndIdLessThanOrderByIdDesc(
+                    restaurantId,
+                    idCursor,
+                    pageRequest
+            );
         }
 
         // 다음 커서 계산
-        nextCursor = missionList.getContent().getLast().getId() + ":" + missionList.getContent().getLast().getId();
+        if (!missionList.getContent().isEmpty())
+            nextCursor = missionList.getContent().getLast().getId() + ":" + missionList.getContent().getLast().getId();
+        else
+            nextCursor = "-1";
 
         //미션들 응답 DTO로 포장하기
         return MissionConverter.toCursorPagination(

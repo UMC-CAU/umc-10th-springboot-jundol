@@ -36,7 +36,5 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
 
     List<Mission> restaurant(Restaurant restaurant);
 
-    Slice<Mission> findMissionsByRestaurant_IdOrderByIdDesc(Long restaurantId, PageRequest pageRequest);
-
     Slice<Mission> findMissionsByRestaurant_IdAndIdLessThanOrderByIdDesc(Long restaurantId, long idCursor, PageRequest pageRequest);
 }

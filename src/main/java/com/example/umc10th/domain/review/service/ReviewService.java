@@ -85,7 +85,12 @@ public class ReviewService {
        else
        {
            //커서 없이 조회
-           reviewSlice = reviewRepository.findReviewsByUser_idOrderByIdDesc(userId, pageRequest);
+           idCursor = Long.MAX_VALUE;
+           reviewSlice = reviewRepository.findReviewsByUser_idAndIdLessThanOrderByIdDesc(
+                   userId,
+                   idCursor,
+                   pageRequest
+           );
        }
 
        //다음 커서 계산
